@@ -12,7 +12,12 @@ with mp_face.FaceMesh(min_detection_confidence=0.5,min_tracking_confidence=0.52)
         result=face_mesh.process(rgb)
         if result.multi_face_landmarks:
             for face_landmarks in result.multi_face_landmarks:
-                mp_drawing.draw_landmarks(frame,face_landmarks,mp_face.FACEMESH_TESSELATION)
+                mp_drawing.draw_landmarks(
+                    frame,
+                    face_landmarks,
+                    mp_face.FACEMESH_TESSELATION,
+                    landmark_drawing_spec=mp_drawing.DrawingSpec(thickness=2,circle_radius=1,color=(255,0,0)),connection_drawing_spec=mp_drawing.DrawingSpec(thickness=1,color=(0,255,0))     )
+                
         cv2.imshow("test",frame)
         if cv2.waitKey(10)==27:
             break
